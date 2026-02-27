@@ -1,0 +1,190 @@
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none; /* Mencegah teks terblok tidak sengaja */
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Mencegah scroll pada layar utama */
+    /* Background default Windows 11 Bloom */
+    background: url('https://images.unsplash.com/photo-1662580741275-802c63261a86?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* ================= TASKBAR ================= */
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 52px;
+    /* Efek Mica / Glassmorphism */
+    background: rgba(243, 243, 243, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.taskbar-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.taskbar-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.taskbar-icon:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.taskbar-icon:active {
+    transform: scale(0.95);
+}
+
+.taskbar-time {
+    position: absolute;
+    right: 15px;
+    font-size: 12px;
+    text-align: right;
+    color: #111;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    border-radius: 6px;
+}
+
+.taskbar-time:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* ================= JENDELA APLIKASI ================= */
+.window {
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 70vw;
+    height: 70vh;
+    /* Glassmorphism Window */
+    background: rgba(250, 250, 250, 0.85);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    z-index: 10;
+}
+
+.window.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95) translateY(20px);
+}
+
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 52px) !important; /* Dikurangi tinggi taskbar */
+    border-radius: 0;
+}
+
+/* Title Bar (Bagian atas untuk di-drag) */
+.title-bar {
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    cursor: grab; /* Kursor tangan saat hover title bar */
+}
+
+.title-bar:active {
+    cursor: grabbing;
+}
+
+.title-info {
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.window-controls button {
+    width: 45px;
+    height: 35px;
+    border: none;
+    background: transparent;
+    color: #111;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.window-controls button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.window-controls button.close:hover {
+    background: #E81123;
+    color: white;
+}
+
+/* Simulasi Address Bar Edge */
+.address-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: #f3f3f3;
+    border-bottom: 1px solid #ddd;
+    gap: 10px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    color: #555;
+    margin-left: 5px;
+}
+
+.address-bar input {
+    flex-grow: 1;
+    height: 28px;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    font-size: 13px;
+    outline: none;
+    background: white;
+}
+
+/* Konten Dalam (iFrame) */
+.window-content {
+    flex-grow: 1;
+    background: white;
+}
+
+#browser-iframe {
+    width: 100%;
+    height: 100%;
+}
