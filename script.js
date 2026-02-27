@@ -1,77 +1,96 @@
 // ================= MENGATUR JAM DI TASKBAR =================
 function updateClock() {
     const now = new Date();
-    
-    // Format Jam (HH:MM AM/PM)
     let hours = now.getHours();
     let minutes = now.getMinutes();
     const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // Jam '0' menjadi '12'
+    hours = hours % 12 || 12; 
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    const timeString = `${hours}:${minutes} ${ampm}`;
-
-    // Format Tanggal (DD/MM/YYYY)
+    
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
-    const dateString = `${day}/${month}/${year}`;
 
-    // Update elemen HTML
-    document.getElementById('clock').innerHTML = `${timeString}<br>${dateString}`;
+    document.getElementById('clock').innerHTML = `${hours}:${minutes} ${ampm}<br>${day}/${month}/${year}`;
 }
 setInterval(updateClock, 1000);
-updateClock(); // Panggil sekali di awal
+updateClock();
 
-// ================= LOGIKA BUKA/TUTUP/MAXIMIZE JENDELA =================
-const browserWindow = document.getElementById('browser-window');
-let isMaximized = false;
+// ================= LOGIKA WINDOWS (BUKA, TUTUP, Z-INDEX) =================
+let highestZIndex = 10; // Agar jendela yang diklik maju ke depan
 
-function toggleBrowser() {
-    // Jika ada class 'hidden', hapus. Jika tidak ada, tambahkan.
-    browserWindow.classList.toggle('hidden');
-}
-
-function maximizeBrowser() {
-    isMaximized = !isMaximized;
-    if (isMaximized) {
-        browserWindow.classList.add('maximized');
-    } else {
-        browserWindow.classList.remove('maximized');
+function toggleWindow(windowId) {
+    const win = document.getElementById(windowId);
+    win.classList.toggle('hidden');
+    if (!win.classList.contains('hidden')) {
+        bringToFront(win);
     }
 }
 
+function maximizeWindow(windowId) {
+    const win = document.getElementById(windowId);
+    win.classList.toggle('maximized');
+}
+
+function bringToFront(winElement) {
+    highestZIndex++;
+    winElement.style.zIndex = highestZIndex;
+}
+
+// ================= BROWSER: ADDRESS BAR & IFRAME =================
+const urlInput = document.getElementById('url-input');
+const iframe = document.getElementById('browser-iframe');
+
+// Berfungsi saat tombol Enter ditekan
+urlInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        let url = urlInput.value.trim();
+        
+        // Tambahkan https:// jika user lupa mengetiknya
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            url = 'https://' + url;
+        }
+        
+        iframe.src = url;
+        urlInput.value = url;
+    }
+});
+
+// Tombol Refresh
+function refreshBrowser() {
+    iframe.src = iframe.src;
+}
+
 // ================= LOGIKA DRAG & DROP JENDELA =================
-const titleBar = document.getElementById('browser-title-bar');
+function makeDraggable(windowId, titleBarId) {
+    const win = document.getElementById(windowId);
+    const titleBar = document.getElementById(titleBarId);
 
-let isDragging = false;
-let offsetX = 0;
-let offsetY = 0;
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
 
-titleBar.addEventListener('mousedown', (e) => {
-    // Jangan drag jika sedang di-maximize
-    if (isMaximized) return; 
+    titleBar.addEventListener('mousedown', (e) => {
+        if (win.classList.contains('maximized')) return; // Jangan drag kalau layar penuh
+        isDragging = true;
+        bringToFront(win);
 
-    isDragging = true;
-    
-    // Hitung posisi klik mouse relatif terhadap pojok kiri atas jendela
-    const rect = browserWindow.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-});
+        const rect = win.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+    });
 
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        win.style.left = `${e.clientX - offsetX}px`;
+        win.style.top = `${e.clientY - offsetY}px`;
+    });
 
-    // Hitung posisi baru
-    let newX = e.clientX - offsetX;
-    let newY = e.clientY - offsetY;
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+}
 
-    // Terapkan posisi baru (gunakan absolute px)
-    browserWindow.style.left = `${newX}px`;
-    browserWindow.style.top = `${newY}px`;
-});
-
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-});
+// Terapkan fungsi drag ke kedua jendela
+makeDraggable('browser-window', 'browser-title-bar');
+makeDraggable('explorer-window', 'explorer-title-bar');
