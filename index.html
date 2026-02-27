@@ -11,16 +11,59 @@
 
     <div class="desktop">
         
-        <div id="browser-window" class="window hidden">
+        <div id="explorer-window" class="window hidden" onmousedown="bringToFront(this)">
+            <div class="title-bar" id="explorer-title-bar">
+                <div class="title-info">
+                    <i class="fa-regular fa-folder-open" style="color: #F8D775;"></i>
+                    <span>File Explorer</span>
+                </div>
+                <div class="window-controls">
+                    <button onclick="toggleWindow('explorer-window')"><i class="fa-solid fa-minus"></i></button>
+                    <button onclick="maximizeWindow('explorer-window')"><i class="fa-regular fa-square"></i></button>
+                    <button class="close" onclick="toggleWindow('explorer-window')"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="explorer-body">
+                <div class="explorer-sidebar">
+                    <ul>
+                        <li><i class="fa-solid fa-house"></i> Home</li>
+                        <li><i class="fa-solid fa-desktop"></i> Desktop</li>
+                        <li><i class="fa-solid fa-download"></i> Downloads</li>
+                        <li><i class="fa-solid fa-file-lines"></i> Documents</li>
+                        <li><i class="fa-solid fa-image"></i> Pictures</li>
+                    </ul>
+                </div>
+                <div class="explorer-content">
+                    <div class="folder-item">
+                        <i class="fa-solid fa-folder" style="color: #F8D775;"></i>
+                        <span>Project Web</span>
+                    </div>
+                    <div class="folder-item">
+                        <i class="fa-solid fa-folder" style="color: #F8D775;"></i>
+                        <span>Tugas Sekolah</span>
+                    </div>
+                    <div class="folder-item">
+                        <i class="fa-solid fa-image" style="color: #4CAF50;"></i>
+                        <span>Wallpaper.jpg</span>
+                    </div>
+                    <div class="folder-item">
+                        <i class="fa-solid fa-file-word" style="color: #2b579a;"></i>
+                        <span>Laporan.docx</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="browser-window" class="window hidden" onmousedown="bringToFront(this)">
             <div class="title-bar" id="browser-title-bar">
                 <div class="title-info">
-                    <i class="fa-solid fa-earth-americas"></i>
+                    <i class="fa-solid fa-earth-americas" style="color: #0078D4;"></i>
                     <span>Edge Browser</span>
                 </div>
                 <div class="window-controls">
-                    <button class="minimize" onclick="toggleBrowser()"><i class="fa-solid fa-minus"></i></button>
-                    <button class="maximize" onclick="maximizeBrowser()"><i class="fa-regular fa-square"></i></button>
-                    <button class="close" onclick="toggleBrowser()"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="toggleWindow('browser-window')"><i class="fa-solid fa-minus"></i></button>
+                    <button onclick="maximizeWindow('browser-window')"><i class="fa-regular fa-square"></i></button>
+                    <button class="close" onclick="toggleWindow('browser-window')"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
             
@@ -28,13 +71,13 @@
                 <div class="nav-buttons">
                     <i class="fa-solid fa-arrow-left"></i>
                     <i class="fa-solid fa-arrow-right"></i>
-                    <i class="fa-solid fa-rotate-right"></i>
+                    <i class="fa-solid fa-rotate-right" onclick="refreshBrowser()"></i>
                 </div>
-                <input type="text" id="url-input" value="https://id.wikipedia.org" readonly>
+                <input type="text" id="url-input" value="https://duckduckgo.com" placeholder="Ketik URL lalu tekan Enter...">
             </div>
 
             <div class="window-content">
-                <iframe id="browser-iframe" src="https://id.wikipedia.org" frameborder="0"></iframe>
+                <iframe id="browser-iframe" src="https://duckduckgo.com" frameborder="0"></iframe>
             </div>
         </div>
 
@@ -45,13 +88,14 @@
             <div class="taskbar-icon start-btn">
                 <i class="fa-brands fa-windows" style="color: #0078D4; font-size: 24px;"></i>
             </div>
-            <div class="taskbar-icon" onclick="toggleBrowser()" title="Buka Browser">
+            <div class="taskbar-icon" onclick="toggleWindow('explorer-window')" title="File Explorer">
+                <i class="fa-solid fa-folder" style="color: #F8D775; font-size: 22px;"></i>
+            </div>
+            <div class="taskbar-icon" onclick="toggleWindow('browser-window')" title="Buka Browser">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Microsoft_Edge_logo_%282019%29.png" alt="Edge" width="28">
             </div>
         </div>
-        <div class="taskbar-time" id="clock">
-            12:00 PM<br>28/02/2026
-        </div>
+        <div class="taskbar-time" id="clock"></div>
     </div>
 
     <script src="script.js"></script>
