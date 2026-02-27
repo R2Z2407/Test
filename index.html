@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Web Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="desktop">
+        
+        <div id="browser-window" class="window hidden">
+            <div class="title-bar" id="browser-title-bar">
+                <div class="title-info">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <span>Edge Browser</span>
+                </div>
+                <div class="window-controls">
+                    <button class="minimize" onclick="toggleBrowser()"><i class="fa-solid fa-minus"></i></button>
+                    <button class="maximize" onclick="maximizeBrowser()"><i class="fa-regular fa-square"></i></button>
+                    <button class="close" onclick="toggleBrowser()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            
+            <div class="address-bar">
+                <div class="nav-buttons">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <i class="fa-solid fa-rotate-right"></i>
+                </div>
+                <input type="text" id="url-input" value="https://id.wikipedia.org" readonly>
+            </div>
+
+            <div class="window-content">
+                <iframe id="browser-iframe" src="https://id.wikipedia.org" frameborder="0"></iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="taskbar">
+        <div class="taskbar-icons">
+            <div class="taskbar-icon start-btn">
+                <i class="fa-brands fa-windows" style="color: #0078D4; font-size: 24px;"></i>
+            </div>
+            <div class="taskbar-icon" onclick="toggleBrowser()" title="Buka Browser">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Microsoft_Edge_logo_%282019%29.png" alt="Edge" width="28">
+            </div>
+        </div>
+        <div class="taskbar-time" id="clock">
+            12:00 PM<br>28/02/2026
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
