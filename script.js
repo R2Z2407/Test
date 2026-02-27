@@ -1,4 +1,4 @@
-// ================= MENGATUR JAM DI TASKBAR =================
+// ================= MENGATUR JAM =================
 function updateClock() {
     const now = new Date();
     let hours = now.getHours();
@@ -16,8 +16,8 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// ================= LOGIKA WINDOWS (BUKA, TUTUP, Z-INDEX) =================
-let highestZIndex = 10; // Agar jendela yang diklik maju ke depan
+// ================= LOGIKA WINDOWS =================
+let highestZIndex = 10;
 
 function toggleWindow(windowId) {
     const win = document.getElementById(windowId);
@@ -37,31 +37,26 @@ function bringToFront(winElement) {
     winElement.style.zIndex = highestZIndex;
 }
 
-// ================= BROWSER: ADDRESS BAR & IFRAME =================
+// ================= BROWSER LOGIC =================
 const urlInput = document.getElementById('url-input');
 const iframe = document.getElementById('browser-iframe');
 
-// Berfungsi saat tombol Enter ditekan
 urlInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         let url = urlInput.value.trim();
-        
-        // Tambahkan https:// jika user lupa mengetiknya
         if (!url.startsWith('http://') && !url.startsWith('https://')) {
             url = 'https://' + url;
         }
-        
         iframe.src = url;
         urlInput.value = url;
     }
 });
 
-// Tombol Refresh
 function refreshBrowser() {
     iframe.src = iframe.src;
 }
 
-// ================= LOGIKA DRAG & DROP JENDELA =================
+// ================= DRAG & DROP =================
 function makeDraggable(windowId, titleBarId) {
     const win = document.getElementById(windowId);
     const titleBar = document.getElementById(titleBarId);
@@ -71,7 +66,10 @@ function makeDraggable(windowId, titleBarId) {
     let offsetY = 0;
 
     titleBar.addEventListener('mousedown', (e) => {
-        if (win.classList.contains('maximized')) return; // Jangan drag kalau layar penuh
+        // PENTING: Jangan aktifkan drag jika yang diklik adalah tombol window controls
+        if (e.target.closest('.window-controls')) return;
+        if (win.classList.contains('maximized')) return; 
+        
         isDragging = true;
         bringToFront(win);
 
@@ -91,6 +89,6 @@ function makeDraggable(windowId, titleBarId) {
     });
 }
 
-// Terapkan fungsi drag ke kedua jendela
+// Terapkan ke jendela
 makeDraggable('browser-window', 'browser-title-bar');
 makeDraggable('explorer-window', 'explorer-title-bar');
