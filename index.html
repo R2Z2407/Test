@@ -3,78 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desa Mulyamekar | Digital Portal</title>
+    <title>Portal Resmi Desa Mulyamekar</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/open-props" />
+    <link rel="stylesheet" href="https://unpkg.com/open-props/normalize.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#F8FAFC] text-slate-800 antialiased" id="app-body">
+<body id="app-body">
 
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">M</div>
-                <div>
-                    <h1 class="text-xl font-bold leading-none tracking-tight">Mulyamekar</h1>
-                    <p class="text-xs text-slate-500 font-medium mt-1">Kab. Purwakarta</p>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <span class="brand-icon">🌿</span>
+                <div class="brand-text">
+                    <h1>Mulyamekar</h1>
+                    <p>Babakancikao, Purwakarta</p>
                 </div>
             </div>
-
-            <div class="flex gap-2">
-                <button id="btn-zoom-out" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-sm font-bold transition">A-</button>
-                <button id="btn-zoom-in" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-lg font-bold transition">A+</button>
+            <div class="accessibility-controls">
+                <button id="btn-zoom-out" aria-label="Perkecil Teks">A-</button>
+                <button id="btn-zoom-in" aria-label="Perbesar Teks">A+</button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <section class="mb-12">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                Selamat Datang di <span class="text-blue-600">Portal Desa.</span>
-            </h2>
-            <p class="text-lg text-slate-600 max-w-2xl mb-8">
-                Akses layanan publik, transparansi dana, dan berita terkini Desa Mulyamekar dengan mudah, cepat, dan transparan.
-            </p>
-        </section>
-
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-            <a href="#" class="bento-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col items-start gap-4">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl">&#x1F4C4;</div>
-                <h3 class="font-bold text-lg text-slate-900">Layanan Surat</h3>
-            </a>
-            <a href="#" class="bento-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col items-start gap-4">
-                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl">&#x1F4B0;</div>
-                <h3 class="font-bold text-lg text-slate-900">Dana Desa</h3>
-            </a>
-            <a href="#" class="bento-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col items-start gap-4">
-                <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl">&#x1F3E5;</div>
-                <h3 class="font-bold text-lg text-slate-900">Kesehatan</h3>
-            </a>
-            <a href="#" class="bento-card bg-blue-600 p-6 rounded-3xl border border-blue-600 flex flex-col items-start gap-4">
-                <div class="w-12 h-12 bg-white/20 text-white rounded-2xl flex items-center justify-center text-2xl">&#x1F4DE;</div>
-                <h3 class="font-bold text-lg text-white">Lapor Kades</h3>
-            </a>
-        </section>
-
-        <section>
-            <div class="flex justify-between items-end mb-6">
-                <h3 class="text-2xl font-bold text-slate-900">Kabar Terbaru</h3>
+    <section class="hero">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="hero-swiper-wrapper">
+                <div class="swiper-slide loading-slide">Memuat berita utama...</div>
             </div>
-            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <p class="text-slate-500">Memuat berita...</p>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <nav class="floating-menu" id="dynamic-menu">
+            <p>Memuat menu layanan...</p>
+        </nav>
+    </section>
+
+    <main class="container main-content">
+        <article class="bento-highlight">
+            <div class="bento-text">
+                <span class="badge badge-accent">Wilayah Kami</span>
+                <h2>Mari Berkunjung ke Mulyamekar</h2>
+                <p>Temukan kehangatan warga, potensi ekonomi kreatif, dan keasrikan lingkungan desa kami di jantung Kecamatan Babakancikao. Kami siap melayani dengan sepenuh hati.</p>
             </div>
-        </section>
+            <div class="bento-media">
+                <div class="placeholder-map">[Peta Desa Mulyamekar]</div>
+            </div>
+        </article>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-12 mt-20">
-        <div class="max-w-6xl mx-auto px-6 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; 2026 Pemerintah Desa Mulyamekar.</p>
-            <p id="footer-address">Memuat info kontak...</p>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <h2>Desa Mulyamekar</h2>
+            <p id="footer-address">Memuat alamat...</p>
+            <small>&copy; 2026 Pemerintah Desa Mulyamekar. Semua Hak Dilindungi.</small>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
