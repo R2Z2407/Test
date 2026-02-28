@@ -1,0 +1,25 @@
+{
+  "informasi_desa": {
+    "nama": "Mulyamekar",
+    "kecamatan": "Babakancikao",
+    "kabupaten": "Purwakarta",
+    "provinsi": "Jawa Barat",
+    "kontak": "Kantor Kepala Desa Mulyamekar, Kec. Babakancikao, Kab. Purwakarta"
+  },
+  "berita_terbaru": [
+    {
+      "id": 1,
+      "tanggal": "24 Agustus 2025",
+      "judul": "Pengaspalan Jalan Lingkungan Kampung Cikopak",
+      "kategori": "Infrastruktur",
+      "ringkasan": "Realisasi Dana Desa (DD) Tahap II Tahun 2025 sebesar Rp 52.510.000 untuk pengaspalan jalan sepanjang 106 meter di Kp. Cikopak guna meningkatkan aksesibilitas warga."
+    },
+    {
+      "id": 2,
+      "tanggal": "5 Juli 2024",
+      "judul": "Potensi UMKM & Wilayah Desa",
+      "kategori": "Ekonomi Sosial",
+      "ringkasan": "Eksplorasi wilayah potensial di sekitar Perumahan Buana Indah, Kampung Sadang, dan Kampung Cikopak yang menjadi pusat perputaran ekonomi lokal."
+    }
+  ]
+}
