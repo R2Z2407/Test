@@ -3,12 +3,25 @@
     "nama": "Mulyamekar",
     "kecamatan": "Babakancikao",
     "kabupaten": "Purwakarta",
-    "kontak": "Kantor Kepala Desa Mulyamekar, Kec. Babakancikao, Purwakarta"
+    "kontak": "Kantor Kepala Desa Mulyamekar, Kec. Babakancikao"
   },
   "layanan_unggulan": [
-    {"id": 1, "nama": "Layanan Surat", "deskripsi": "KTP, KK, SKCK", "icon": "📄"},
-    {"id": 2, "nama": "Dana Desa", "deskripsi": "Transparansi APBDes", "icon": "💰"},
-    {"id": 3, "nama": "Lapor Kades", "deskripsi": "Pengaduan Warga", "icon": "📣"}
+    {
+      "id": 1, "nama": "Layanan Surat", "deskripsi": "KTP, KK, SKCK & Domisili", "icon": "📄",
+      "detail": "Pembuatan surat pengantar RT/RW kini bisa diakses secara digital. Silakan siapkan NIK dan KK Anda untuk melanjutkan."
+    },
+    {
+      "id": 2, "nama": "Dana Desa", "deskripsi": "Transparansi APBDes", "icon": "📊",
+      "detail": "Pantau realisasi anggaran desa, proyek infrastruktur, dan pemberdayaan masyarakat tahun 2026 secara transparan."
+    },
+    {
+      "id": 3, "nama": "Lapor Kades", "deskripsi": "Pengaduan Warga 24/7", "icon": "📢",
+      "detail": "Ada jalan rusak atau lampu mati? Laporkan langsung ke meja Kepala Desa. Identitas pelapor dijamin kerahasiaannya."
+    },
+    {
+      "id": 4, "nama": "Kesehatan", "deskripsi": "Posyandu & Bidan", "icon": "🏥",
+      "detail": "Jadwal imunisasi balita, layanan ibu hamil, dan cek kesehatan lansia gratis di Poskesdes Mulyamekar."
+    }
   ],
   "berita_utama": [
     {
@@ -24,7 +37,7 @@
       "tanggal": "5 Jul 2024",
       "judul": "Festival UMKM & Potensi Wisata Desa",
       "kategori": "Ekonomi",
-      "ringkasan": "Eksplorasi produk lokal Kp. Sadang dan Perum Buana Indah untuk kemajuan ekonomi desa.",
+      "ringkasan": "Eksplorasi produk lokal Kp. Sadang dan Perum Buana Indah.",
       "image_url": "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?q=80&w=1600&auto=format&fit=crop"
     }
   ]
