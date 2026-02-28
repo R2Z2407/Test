@@ -1,94 +1,64 @@
-// ================= MENGATUR JAM =================
-function updateClock() {
-    const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12 || 12; 
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
+// --- 1. Fitur Aksesibilitas (Zoom Text) ---
+let currentZoom = 100; // Persentase base
+const body = document.getElementById('app-body');
 
-    document.getElementById('clock').innerHTML = `${hours}:${minutes} ${ampm}<br>${day}/${month}/${year}`;
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-// ================= LOGIKA WINDOWS =================
-let highestZIndex = 10;
-
-function toggleWindow(windowId) {
-    const win = document.getElementById(windowId);
-    win.classList.toggle('hidden');
-    if (!win.classList.contains('hidden')) {
-        bringToFront(win);
-    }
-}
-
-function maximizeWindow(windowId) {
-    const win = document.getElementById(windowId);
-    win.classList.toggle('maximized');
-}
-
-function bringToFront(winElement) {
-    highestZIndex++;
-    winElement.style.zIndex = highestZIndex;
-}
-
-// ================= BROWSER LOGIC =================
-const urlInput = document.getElementById('url-input');
-const iframe = document.getElementById('browser-iframe');
-
-urlInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        let url = urlInput.value.trim();
-        if (!url.startsWith('http://') && !url.startsWith('https://')) {
-            url = 'https://' + url;
-        }
-        iframe.src = url;
-        urlInput.value = url;
+document.getElementById('btn-zoom-in').addEventListener('click', () => {
+    if (currentZoom < 130) {
+        currentZoom += 10;
+        body.style.fontSize = `${currentZoom}%`;
     }
 });
 
-function refreshBrowser() {
-    iframe.src = iframe.src;
-}
+document.getElementById('btn-zoom-out').addEventListener('click', () => {
+    if (currentZoom > 90) {
+        currentZoom -= 10;
+        body.style.fontSize = `${currentZoom}%`;
+    }
+});
 
-// ================= DRAG & DROP =================
-function makeDraggable(windowId, titleBarId) {
-    const win = document.getElementById(windowId);
-    const titleBar = document.getElementById(titleBarId);
-
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    titleBar.addEventListener('mousedown', (e) => {
-        // PENTING: Jangan aktifkan drag jika yang diklik adalah tombol window controls
-        if (e.target.closest('.window-controls')) return;
-        if (win.classList.contains('maximized')) return; 
+// --- 2. Fetching Data dari db.json ---
+async function loadDesaData() {
+    try {
+        // Ambil data dari file db.json lokal
+        const response = await fetch('db.json');
         
-        isDragging = true;
-        bringToFront(win);
-
-        const rect = win.getBoundingClientRect();
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        win.style.left = `${e.clientX - offsetX}px`;
-        win.style.top = `${e.clientY - offsetY}px`;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
+        // Cek kalau responnya gagal (misal file tidak ditemukan)
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        renderData(data);
+    } catch (error) {
+        console.error("Gagal memuat data:", error);
+        document.getElementById('news-container').innerHTML = 
+            `<p class="text-red-500">Gagal memuat berita. Pastikan Anda menjalankan web ini di local server.</p>`;
+    }
 }
 
-// Terapkan ke jendela
-makeDraggable('browser-window', 'browser-title-bar');
-makeDraggable('explorer-window', 'explorer-title-bar');
+// --- 3. Render Data ke DOM ---
+function renderData(data) {
+    // Render Berita
+    const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = ''; // Kosongkan placeholder
+
+    data.berita_terbaru.forEach(berita => {
+        const articleCard = `
+            <article class="bg-white p-6 rounded-3xl border border-slate-200 hover:border-blue-300 transition group cursor-pointer shadow-sm">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wider">${berita.kategori}</span>
+                    <span class="text-slate-400 text-sm font-medium">${berita.tanggal}</span>
+                </div>
+                <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition">${berita.judul}</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">${berita.ringkasan}</p>
+            </article>
+        `;
+        newsContainer.innerHTML += articleCard;
+    });
+
+    // Render Alamat di Footer
+    document.getElementById('footer-address').innerText = data.informasi_desa.kontak;
+}
+
+// Jalankan fungsi load data saat halaman selesai di-load
+document.addEventListener('DOMContentLoaded', loadDesaData);
