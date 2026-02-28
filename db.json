@@ -3,23 +3,29 @@
     "nama": "Mulyamekar",
     "kecamatan": "Babakancikao",
     "kabupaten": "Purwakarta",
-    "provinsi": "Jawa Barat",
-    "kontak": "Kantor Kepala Desa Mulyamekar, Kec. Babakancikao, Kab. Purwakarta"
+    "kontak": "Kantor Kepala Desa Mulyamekar, Kec. Babakancikao, Purwakarta"
   },
-  "berita_terbaru": [
+  "layanan_unggulan": [
+    {"id": 1, "nama": "Layanan Surat", "deskripsi": "KTP, KK, SKCK", "icon": "📄"},
+    {"id": 2, "nama": "Dana Desa", "deskripsi": "Transparansi APBDes", "icon": "💰"},
+    {"id": 3, "nama": "Lapor Kades", "deskripsi": "Pengaduan Warga", "icon": "📣"}
+  ],
+  "berita_utama": [
     {
       "id": 1,
-      "tanggal": "24 Agustus 2025",
-      "judul": "Pengaspalan Jalan Lingkungan Kampung Cikopak",
+      "tanggal": "24 Ags 2025",
+      "judul": "Pengaspalan Jalan Lingkungan Kp. Cikopak",
       "kategori": "Infrastruktur",
-      "ringkasan": "Realisasi Dana Desa (DD) Tahap II Tahun 2025 sebesar Rp 52.510.000 untuk pengaspalan jalan sepanjang 106 meter di Kp. Cikopak guna meningkatkan aksesibilitas warga."
+      "ringkasan": "Dana Desa Tahap II digunakan untuk pengaspalan sepanjang 106 meter di kawasan utama.",
+      "image_url": "https://images.unsplash.com/photo-1596130193132-73a46564619a?q=80&w=1600&auto=format&fit=crop"
     },
     {
       "id": 2,
-      "tanggal": "5 Juli 2024",
-      "judul": "Potensi UMKM & Wilayah Desa",
-      "kategori": "Ekonomi Sosial",
-      "ringkasan": "Eksplorasi wilayah potensial di sekitar Perumahan Buana Indah, Kampung Sadang, dan Kampung Cikopak yang menjadi pusat perputaran ekonomi lokal."
+      "tanggal": "5 Jul 2024",
+      "judul": "Festival UMKM & Potensi Wisata Desa",
+      "kategori": "Ekonomi",
+      "ringkasan": "Eksplorasi produk lokal Kp. Sadang dan Perum Buana Indah untuk kemajuan ekonomi desa.",
+      "image_url": "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?q=80&w=1600&auto=format&fit=crop"
     }
   ]
 }
