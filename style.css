@@ -4,10 +4,12 @@
     --surface-bg: var(--sand-1);
     --text-main: var(--gray-9);
     --text-muted: var(--gray-6);
+    --font-heading: 'Volkhov', var(--font-serif);
+    --font-body: 'Inter', var(--font-sans);
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     background-color: var(--surface-bg);
     color: var(--text-main);
     font-size: 16px; 
@@ -17,31 +19,31 @@ body {
 
 .container { max-width: 1200px; margin-inline: auto; padding-inline: var(--size-5); }
 
-/* Header (Sama) */
+/* Header (Clean & Modern) */
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: var(--layer-5); background: hsl(0 0% 100% / 0.85); backdrop-filter: blur(var(--size-4)); border-bottom: 1px solid var(--gray-2); }
 .header-inner { display: flex; justify-content: space-between; align-items: center; padding-block: var(--size-3); }
 .brand { display: flex; align-items: center; gap: var(--size-3); }
 .brand-icon { font-size: var(--font-size-5); }
-.brand-text h1 { font-size: var(--font-size-4); color: var(--brand-primary); margin: 0; }
+.brand-text h1 { font-size: var(--font-size-4); font-family: var(--font-heading); color: var(--brand-primary); margin: 0; }
 .brand-text p { font-size: var(--font-size-1); color: var(--text-muted); margin: 0; }
 
 .accessibility-controls { display: flex; gap: var(--size-2); }
 .accessibility-controls button { background: var(--gray-1); border: none; border-radius: var(--radius-round); width: var(--size-8); height: var(--size-8); font-weight: var(--font-weight-7); cursor: pointer; transition: background var(--ease-2), transform var(--ease-bounce-1); }
 .accessibility-controls button:hover { background: var(--gray-3); transform: scale(1.1); }
 
-/* Hero & Swiper (Sama) */
+/* Hero & Swiper */
 .hero { position: relative; padding-top: var(--size-11); }
 .swiper { width: 100%; height: 75vh; border-radius: 0 0 var(--radius-5) var(--radius-5); }
 .swiper-slide { position: relative; overflow: hidden; background: var(--gray-9); }
 .swiper-slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.65; transition: transform 8s var(--ease-out-3); }
 .swiper-slide-active img { transform: scale(1.08); }
 .slide-content { position: absolute; bottom: 180px; left: 5%; max-width: 800px; color: white; z-index: var(--layer-2); animation: var(--animation-slide-in-up) forwards; }
-.slide-content h2 { font-size: var(--font-size-7); margin-block: var(--size-2); line-height: var(--font-lineheight-1); text-shadow: var(--shadow-3); }
+.slide-content h2 { font-size: var(--font-size-7); font-family: var(--font-heading); margin-block: var(--size-2); line-height: var(--font-lineheight-1); text-shadow: var(--shadow-3); }
 .slide-content p { font-size: var(--font-size-3); max-width: 60ch; text-shadow: var(--shadow-2); }
 .badge { display: inline-block; padding: var(--size-1) var(--size-3); border-radius: var(--radius-pill); font-size: var(--font-size-1); font-weight: var(--font-weight-7); text-transform: uppercase; letter-spacing: var(--font-letterspacing-2); }
 .badge-accent { background: var(--brand-accent); color: white; }
 
-/* --- PERBAIKAN: Floating Glass Menu (Desktop Premium) --- */
+/* --- Floating Glass Menu (Desktop Premium & Aesthetic) --- */
 .floating-menu-container {
     position: absolute;
     bottom: calc(var(--size-10) * -1); /* Agak lebih turun */
@@ -53,7 +55,7 @@ body {
 }
 
 .floating-menu {
-    width: 100%; max-width: 1100px; /* Lebar optimal desktop */
+    width: 100%; max-width: 1100px; /* Lebar optimal desktop premium */
     background: hsl(0 0% 100% / 0.65);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -62,7 +64,7 @@ body {
     box-shadow: var(--shadow-5);
     padding: var(--size-4);
     
-    /* Gunakan Flexbox agar bisa rata tengah & elegan */
+    /* Gunakan Flexbox agar rata tengah & elegan di desktop */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -99,7 +101,7 @@ body {
     transform: scale(1.2);
 }
 
-.menu-item h4 { color: var(--brand-primary); margin: 0; font-size: var(--font-size-4); font-weight: var(--font-weight-8); }
+.menu-item h4 { color: var(--brand-primary); margin: 0; font-size: var(--font-size-4); font-weight: var(--font-weight-8); font-family: var(--font-heading); }
 .menu-item p { color: var(--text-muted); margin-top: var(--size-2); font-size: var(--font-size-2); line-height: 1.4; }
 
 /* --- NATIVE DIALOG MODAL (POP-UP) ESTETIK --- */
@@ -144,7 +146,7 @@ body {
 .close-modal:hover { background: var(--gray-4); }
 
 .modal-icon-large { font-size: var(--font-size-8); margin-bottom: var(--size-4); }
-.modal-content h3 { color: var(--brand-primary); font-size: var(--font-size-6); margin-bottom: var(--size-2); }
+.modal-content h3 { color: var(--brand-primary); font-family: var(--font-heading); font-size: var(--font-size-6); margin-bottom: var(--size-2); }
 .modal-content p { color: var(--text-muted); line-height: var(--font-lineheight-3); margin-bottom: var(--size-6); }
 
 .btn-primary {
@@ -161,13 +163,13 @@ body {
 }
 .btn-primary:hover { background: var(--green-10); transform: translateY(-2px); box-shadow: var(--shadow-2); }
 
-/* Main Content & Footer (Sama) */
-.main-content { margin-top: 180px; } /* Jarak ditambah karena menu agak turun */
+/* Main Content & Footer */
+.main-content { margin-top: 180px; } /* Jarak ditambah karena menu desktop turun */
 .bento-highlight { background: white; border-radius: var(--radius-5); padding: var(--size-8); box-shadow: var(--shadow-2); display: grid; grid-template-columns: 1fr 1fr; gap: var(--size-8); align-items: center; }
-.bento-highlight h2 { color: var(--brand-primary); font-size: var(--font-size-6); margin-block: var(--size-3); }
+.bento-highlight h2 { color: var(--brand-primary); font-family: var(--font-heading); font-size: var(--font-size-6); margin-block: var(--size-3); }
 .placeholder-map { aspect-ratio: 16/9; background: var(--gray-2); border-radius: var(--radius-3); display: grid; place-items: center; color: var(--text-muted); }
 .site-footer { background: var(--brand-primary); color: var(--green-1); margin-top: var(--size-10); padding-block: var(--size-9); text-align: center; border-radius: var(--radius-5) var(--radius-5) 0 0; }
-.site-footer h2 { margin-bottom: var(--size-2); font-size: var(--font-size-5); }
+.site-footer h2 { margin-bottom: var(--size-2); font-size: var(--font-size-5); font-family: var(--font-heading); }
 .site-footer p { opacity: 0.8; margin-bottom: var(--size-5); }
 .site-footer small { opacity: 0.6; }
 
