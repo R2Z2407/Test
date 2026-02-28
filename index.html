@@ -7,9 +7,7 @@
     
     <link rel="stylesheet" href="https://unpkg.com/open-props" />
     <link rel="stylesheet" href="https://unpkg.com/open-props/normalize.min.css" />
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="app-body">
@@ -24,8 +22,8 @@
                 </div>
             </div>
             <div class="accessibility-controls">
-                <button id="btn-zoom-out" aria-label="Perkecil Teks">A-</button>
-                <button id="btn-zoom-in" aria-label="Perbesar Teks">A+</button>
+                <button id="btn-zoom-out" aria-label="Perkecil">A-</button>
+                <button id="btn-zoom-in" aria-label="Perbesar">A+</button>
             </div>
         </div>
     </header>
@@ -39,20 +37,32 @@
             <div class="swiper-button-prev"></div>
         </div>
 
-        <nav class="floating-menu" id="dynamic-menu">
-            <p>Memuat menu layanan...</p>
+        <nav class="floating-menu-container">
+            <div class="floating-menu" id="dynamic-menu">
+                <p>Memuat menu...</p>
+            </div>
         </nav>
     </section>
+
+    <dialog id="service-modal" class="aesthetic-modal">
+        <div class="modal-content">
+            <button id="btn-close-modal" class="close-modal">&times;</button>
+            <div id="modal-icon" class="modal-icon-large"></div>
+            <h3 id="modal-title">Judul Layanan</h3>
+            <p id="modal-desc">Deskripsi layanan akan muncul di sini.</p>
+            <button class="btn-primary">Lanjutkan &rarr;</button>
+        </div>
+    </dialog>
 
     <main class="container main-content">
         <article class="bento-highlight">
             <div class="bento-text">
                 <span class="badge badge-accent">Wilayah Kami</span>
                 <h2>Mari Berkunjung ke Mulyamekar</h2>
-                <p>Temukan kehangatan warga, potensi ekonomi kreatif, dan keasrikan lingkungan desa kami di jantung Kecamatan Babakancikao. Kami siap melayani dengan sepenuh hati.</p>
+                <p>Temukan kehangatan warga, potensi ekonomi kreatif, dan keasrikan lingkungan desa kami di jantung Kecamatan Babakancikao.</p>
             </div>
             <div class="bento-media">
-                <div class="placeholder-map">[Peta Desa Mulyamekar]</div>
+                <div class="placeholder-map">[Peta / Foto Desa]</div>
             </div>
         </article>
     </main>
@@ -61,7 +71,7 @@
         <div class="container footer-inner">
             <h2>Desa Mulyamekar</h2>
             <p id="footer-address">Memuat alamat...</p>
-            <small>&copy; 2026 Pemerintah Desa Mulyamekar. Semua Hak Dilindungi.</small>
+            <small>&copy; 2026 Pemerintah Desa Mulyamekar.</small>
         </div>
     </footer>
 
