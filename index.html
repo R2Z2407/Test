@@ -3,96 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 11 Web Edition</title>
+    <title>Desa Mulyamekar | Digital Portal</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="bg-[#F8FAFC] text-slate-800 antialiased" id="app-body">
 
-    <div class="desktop">
-        
-        <div id="explorer-window" class="window hidden" onmousedown="bringToFront(this)">
-            <div class="title-bar" id="explorer-title-bar">
-                <div class="title-info">
-                    <i class="fa-regular fa-folder-open" style="color: #F8D775;"></i>
-                    <span>File Explorer</span>
-                </div>
-                <div class="window-controls">
-                    <button onclick="toggleWindow('explorer-window')"><i class="fa-solid fa-minus"></i></button>
-                    <button onclick="maximizeWindow('explorer-window')"><i class="fa-regular fa-square"></i></button>
-                    <button class="close" onclick="toggleWindow('explorer-window')"><i class="fa-solid fa-xmark"></i></button>
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">M</div>
+                <div>
+                    <h1 class="text-xl font-bold leading-none tracking-tight">Mulyamekar</h1>
+                    <p class="text-xs text-slate-500 font-medium mt-1">Kab. Purwakarta</p>
                 </div>
             </div>
-            <div class="explorer-body">
-                <div class="explorer-sidebar">
-                    <ul>
-                        <li><i class="fa-solid fa-house"></i> Home</li>
-                        <li><i class="fa-solid fa-desktop"></i> Desktop</li>
-                        <li><i class="fa-solid fa-download"></i> Downloads</li>
-                        <li><i class="fa-solid fa-file-lines"></i> Documents</li>
-                        <li><i class="fa-solid fa-image"></i> Pictures</li>
-                    </ul>
-                </div>
-                <div class="explorer-content">
-                    <div class="folder-item">
-                        <i class="fa-solid fa-folder" style="color: #F8D775;"></i>
-                        <span>Project Web</span>
-                    </div>
-                    <div class="folder-item">
-                        <i class="fa-solid fa-image" style="color: #4CAF50;"></i>
-                        <span>Wallpaper.jpg</span>
-                    </div>
-                    <div class="folder-item">
-                        <i class="fa-solid fa-file-word" style="color: #2b579a;"></i>
-                        <span>Laporan.docx</span>
-                    </div>
-                </div>
+
+            <div class="flex gap-2">
+                <button id="btn-zoom-out" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-sm font-bold transition">A-</button>
+                <button id="btn-zoom-in" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-lg font-bold transition">A+</button>
             </div>
         </div>
+    </header>
 
-        <div id="browser-window" class="window hidden" onmousedown="bringToFront(this)">
-            <div class="title-bar" id="browser-title-bar">
-                <div class="title-info">
-                    <i class="fa-solid fa-earth-americas" style="color: #0078D4;"></i>
-                    <span>Edge Browser</span>
-                </div>
-                <div class="window-controls">
-                    <button onclick="toggleWindow('browser-window')"><i class="fa-solid fa-minus"></i></button>
-                    <button onclick="maximizeWindow('browser-window')"><i class="fa-regular fa-square"></i></button>
-                    <button class="close" onclick="toggleWindow('browser-window')"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
-            
-            <div class="address-bar">
-                <div class="nav-buttons">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <i class="fa-solid fa-arrow-right"></i>
-                    <i class="fa-solid fa-rotate-right" onclick="refreshBrowser()"></i>
-                </div>
-                <input type="text" id="url-input" value="https://duckduckgo.com" placeholder="Ketik URL lalu tekan Enter (Contoh: bing.com)">
-            </div>
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <section class="mb-12">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Selamat Datang di <span class="text-blue-600">Portal Desa.</span>
+            </h2>
+            <p class="text-lg text-slate-600 max-w-2xl mb-8">
+                Akses layanan publik, transparansi dana, dan berita terkini Desa Mulyamekar dengan mudah, cepat, dan transparan.
+            </p>
+        </section>
 
-            <div class="window-content">
-                <iframe id="browser-iframe" src="https://duckduckgo.com" frameborder="0"></iframe>
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+            <a href="#" class="bento-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col items-start gap-4">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl">&#x1F4C4;</div>
+                <h3 class="font-bold text-lg text-slate-900">Layanan Surat</h3>
+            </a>
+            <a href="#" class="bento-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col items-start gap-4">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl">&#x1F4B0;</div>
+                <h3 class="font-bold text-lg text-slate-900">Dana Desa</h3>
+            </a>
+            <a href="#" class="bento-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col items-start gap-4">
+                <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl">&#x1F3E5;</div>
+                <h3 class="font-bold text-lg text-slate-900">Kesehatan</h3>
+            </a>
+            <a href="#" class="bento-card bg-blue-600 p-6 rounded-3xl border border-blue-600 flex flex-col items-start gap-4">
+                <div class="w-12 h-12 bg-white/20 text-white rounded-2xl flex items-center justify-center text-2xl">&#x1F4DE;</div>
+                <h3 class="font-bold text-lg text-white">Lapor Kades</h3>
+            </a>
+        </section>
+
+        <section>
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="text-2xl font-bold text-slate-900">Kabar Terbaru</h3>
             </div>
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <p class="text-slate-500">Memuat berita...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-6 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Pemerintah Desa Mulyamekar.</p>
+            <p id="footer-address">Memuat info kontak...</p>
         </div>
-
-    </div>
-
-    <div class="taskbar">
-        <div class="taskbar-icons">
-            <div class="taskbar-icon start-btn">
-                <i class="fa-brands fa-windows" style="color: #0078D4; font-size: 24px;"></i>
-            </div>
-            <div class="taskbar-icon" onclick="toggleWindow('explorer-window')" title="File Explorer">
-                <i class="fa-solid fa-folder" style="color: #F8D775; font-size: 22px;"></i>
-            </div>
-            <div class="taskbar-icon" onclick="toggleWindow('browser-window')" title="Buka Browser">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Microsoft_Edge_logo_%282019%29.png" alt="Edge" width="28">
-            </div>
-        </div>
-        <div class="taskbar-time" id="clock"></div>
-    </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
