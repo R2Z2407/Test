@@ -1,16 +1,174 @@
-/* Aturan global font dan transisi untuk aksesibilitas zoom */
+/* --- Global & Variables --- */
+:root {
+    --brand-primary: var(--green-9);
+    --brand-accent: var(--orange-6);
+    --surface-bg: var(--sand-1);
+    --text-main: var(--gray-9);
+    --text-muted: var(--gray-6);
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px; 
-    transition: font-size 0.3s ease;
+    font-family: var(--font-sans);
+    background-color: var(--surface-bg);
+    color: var(--text-main);
+    font-size: 16px; /* Base for accessibility */
+    transition: font-size var(--ease-3);
+    padding-bottom: var(--size-10);
 }
 
-/* Animasi untuk Bento Grid Cards */
-.bento-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--size-5);
 }
 
-.bento-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+/* --- Header & Accessibility --- */
+.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: var(--layer-5);
+    background: hsl(0 0% 100% / 0.85);
+    backdrop-filter: blur(var(--size-4));
+    border-bottom: 1px solid var(--gray-2);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--size-3);
+}
+
+.brand { display: flex; align-items: center; gap: var(--size-3); }
+.brand-icon { font-size: var(--font-size-5); }
+.brand-text h1 { font-size: var(--font-size-4); color: var(--brand-primary); margin: 0; }
+.brand-text p { font-size: var(--font-size-1); color: var(--text-muted); margin: 0; }
+
+.accessibility-controls { display: flex; gap: var(--size-2); }
+.accessibility-controls button {
+    background: var(--gray-1);
+    border: none;
+    border-radius: var(--radius-round);
+    width: var(--size-8); height: var(--size-8);
+    font-weight: var(--font-weight-7);
+    cursor: pointer;
+    transition: background var(--ease-2), transform var(--ease-bounce-1);
+}
+.accessibility-controls button:hover {
+    background: var(--gray-3);
+    transform: scale(1.1);
+}
+
+/* --- Hero & Swiper --- */
+.hero {
+    position: relative;
+    padding-top: var(--size-11); /* Space for header */
+}
+
+.swiper { width: 100%; height: 75vh; }
+.swiper-slide { position: relative; overflow: hidden; background: var(--gray-9); }
+.swiper-slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.6; /* Gelapkan gambar biar teks jelas */
+    transition: transform 6s var(--ease-out-3);
+}
+.swiper-slide-active img { transform: scale(1.05); }
+
+.slide-content {
+    position: absolute;
+    bottom: 150px; left: 5%;
+    max-width: 800px;
+    color: white;
+    z-index: var(--layer-2);
+    animation: var(--animation-slide-in-up) forwards;
+}
+
+.slide-content h2 { font-size: var(--font-size-7); margin-block: var(--size-2); line-height: var(--font-lineheight-1); }
+.slide-content p { font-size: var(--font-size-3); max-width: 60ch; }
+
+.badge {
+    display: inline-block;
+    padding: var(--size-1) var(--size-3);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-1);
+    font-weight: var(--font-weight-7);
+    text-transform: uppercase;
+    letter-spacing: var(--font-letterspacing-2);
+}
+.badge-accent { background: var(--brand-accent); color: white; }
+
+/* --- Floating Glass Menu (Trendy 2026) --- */
+.floating-menu {
+    position: absolute;
+    bottom: calc(var(--size-9) * -1);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; max-width: 1000px;
+    z-index: var(--layer-3);
+    
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(0 0% 100% / 0.4);
+    border-radius: var(--radius-5);
+    box-shadow: var(--shadow-4);
+    padding: var(--size-6);
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--size-5);
+}
+
+.menu-item {
+    text-align: center;
+    padding: var(--size-4);
+    border-radius: var(--radius-3);
+    transition: background var(--ease-2), transform var(--ease-spring-2);
+    cursor: pointer;
+}
+.menu-item:hover { background: white; transform: translateY(-8px); box-shadow: var(--shadow-2); }
+.menu-icon { font-size: var(--font-size-7); margin-bottom: var(--size-3); }
+.menu-item h4 { color: var(--brand-primary); margin: 0; font-size: var(--font-size-4); }
+.menu-item p { color: var(--text-muted); margin-top: var(--size-1); font-size: var(--font-size-2); }
+
+/* --- Main Content (Bento Highlight) --- */
+.main-content { margin-top: 150px; }
+.bento-highlight {
+    background: white;
+    border-radius: var(--radius-5);
+    padding: var(--size-8);
+    box-shadow: var(--shadow-2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--size-8);
+    align-items: center;
+}
+.bento-highlight h2 { color: var(--brand-primary); font-size: var(--font-size-6); margin-block: var(--size-3); }
+.placeholder-map {
+    aspect-ratio: 16/9;
+    background: var(--gray-2);
+    border-radius: var(--radius-3);
+    display: grid; place-items: center;
+    color: var(--text-muted);
+}
+
+/* --- Footer --- */
+.site-footer {
+    background: var(--brand-primary);
+    color: var(--green-1);
+    margin-top: var(--size-10);
+    padding-block: var(--size-9);
+    text-align: center;
+    border-radius: var(--radius-5) var(--radius-5) 0 0;
+}
+.site-footer h2 { margin-bottom: var(--size-2); font-size: var(--font-size-5); }
+.site-footer p { opacity: 0.8; margin-bottom: var(--size-5); }
+.site-footer small { opacity: 0.6; }
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .floating-menu { grid-template-columns: 1fr; position: static; transform: none; width: 100%; margin-top: var(--size-5); }
+    .slide-content h2 { font-size: var(--font-size-5); }
+    .bento-highlight { grid-template-columns: 1fr; padding: var(--size-5); }
+    .main-content { margin-top: var(--size-8); }
 }
