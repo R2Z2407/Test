@@ -1,4 +1,3 @@
-/* --- Global & Variables --- */
 :root {
     --brand-primary: var(--green-9);
     --brand-accent: var(--orange-6);
@@ -11,163 +10,171 @@ body {
     font-family: var(--font-sans);
     background-color: var(--surface-bg);
     color: var(--text-main);
-    font-size: 16px; /* Base for accessibility */
+    font-size: 16px; 
     transition: font-size var(--ease-3);
     padding-bottom: var(--size-10);
 }
 
-.container {
-    max-width: 1200px;
-    margin-inline: auto;
-    padding-inline: var(--size-5);
-}
+.container { max-width: 1200px; margin-inline: auto; padding-inline: var(--size-5); }
 
-/* --- Header & Accessibility --- */
-.site-header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: var(--layer-5);
-    background: hsl(0 0% 100% / 0.85);
-    backdrop-filter: blur(var(--size-4));
-    border-bottom: 1px solid var(--gray-2);
-}
-
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: var(--size-3);
-}
-
+/* Header (Sama) */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: var(--layer-5); background: hsl(0 0% 100% / 0.85); backdrop-filter: blur(var(--size-4)); border-bottom: 1px solid var(--gray-2); }
+.header-inner { display: flex; justify-content: space-between; align-items: center; padding-block: var(--size-3); }
 .brand { display: flex; align-items: center; gap: var(--size-3); }
 .brand-icon { font-size: var(--font-size-5); }
 .brand-text h1 { font-size: var(--font-size-4); color: var(--brand-primary); margin: 0; }
 .brand-text p { font-size: var(--font-size-1); color: var(--text-muted); margin: 0; }
 
 .accessibility-controls { display: flex; gap: var(--size-2); }
-.accessibility-controls button {
-    background: var(--gray-1);
-    border: none;
-    border-radius: var(--radius-round);
-    width: var(--size-8); height: var(--size-8);
-    font-weight: var(--font-weight-7);
-    cursor: pointer;
-    transition: background var(--ease-2), transform var(--ease-bounce-1);
-}
-.accessibility-controls button:hover {
-    background: var(--gray-3);
-    transform: scale(1.1);
-}
+.accessibility-controls button { background: var(--gray-1); border: none; border-radius: var(--radius-round); width: var(--size-8); height: var(--size-8); font-weight: var(--font-weight-7); cursor: pointer; transition: background var(--ease-2), transform var(--ease-bounce-1); }
+.accessibility-controls button:hover { background: var(--gray-3); transform: scale(1.1); }
 
-/* --- Hero & Swiper --- */
-.hero {
-    position: relative;
-    padding-top: var(--size-11); /* Space for header */
-}
-
-.swiper { width: 100%; height: 75vh; }
+/* Hero & Swiper (Sama) */
+.hero { position: relative; padding-top: var(--size-11); }
+.swiper { width: 100%; height: 75vh; border-radius: 0 0 var(--radius-5) var(--radius-5); }
 .swiper-slide { position: relative; overflow: hidden; background: var(--gray-9); }
-.swiper-slide img {
-    width: 100%; height: 100%; object-fit: cover;
-    opacity: 0.6; /* Gelapkan gambar biar teks jelas */
-    transition: transform 6s var(--ease-out-3);
-}
-.swiper-slide-active img { transform: scale(1.05); }
-
-.slide-content {
-    position: absolute;
-    bottom: 150px; left: 5%;
-    max-width: 800px;
-    color: white;
-    z-index: var(--layer-2);
-    animation: var(--animation-slide-in-up) forwards;
-}
-
-.slide-content h2 { font-size: var(--font-size-7); margin-block: var(--size-2); line-height: var(--font-lineheight-1); }
-.slide-content p { font-size: var(--font-size-3); max-width: 60ch; }
-
-.badge {
-    display: inline-block;
-    padding: var(--size-1) var(--size-3);
-    border-radius: var(--radius-pill);
-    font-size: var(--font-size-1);
-    font-weight: var(--font-weight-7);
-    text-transform: uppercase;
-    letter-spacing: var(--font-letterspacing-2);
-}
+.swiper-slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.65; transition: transform 8s var(--ease-out-3); }
+.swiper-slide-active img { transform: scale(1.08); }
+.slide-content { position: absolute; bottom: 180px; left: 5%; max-width: 800px; color: white; z-index: var(--layer-2); animation: var(--animation-slide-in-up) forwards; }
+.slide-content h2 { font-size: var(--font-size-7); margin-block: var(--size-2); line-height: var(--font-lineheight-1); text-shadow: var(--shadow-3); }
+.slide-content p { font-size: var(--font-size-3); max-width: 60ch; text-shadow: var(--shadow-2); }
+.badge { display: inline-block; padding: var(--size-1) var(--size-3); border-radius: var(--radius-pill); font-size: var(--font-size-1); font-weight: var(--font-weight-7); text-transform: uppercase; letter-spacing: var(--font-letterspacing-2); }
 .badge-accent { background: var(--brand-accent); color: white; }
 
-/* --- Floating Glass Menu (Trendy 2026) --- */
-.floating-menu {
+/* --- PERBAIKAN: Floating Glass Menu (Desktop Premium) --- */
+.floating-menu-container {
     position: absolute;
-    bottom: calc(var(--size-9) * -1);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%; max-width: 1000px;
+    bottom: calc(var(--size-10) * -1); /* Agak lebih turun */
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
     z-index: var(--layer-3);
-    
-    background: hsl(0 0% 100% / 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsl(0 0% 100% / 0.4);
+    padding-inline: var(--size-5);
+}
+
+.floating-menu {
+    width: 100%; max-width: 1100px; /* Lebar optimal desktop */
+    background: hsl(0 0% 100% / 0.65);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid hsl(0 0% 100% / 0.5);
     border-radius: var(--radius-5);
-    box-shadow: var(--shadow-4);
-    padding: var(--size-6);
+    box-shadow: var(--shadow-5);
+    padding: var(--size-4);
     
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--size-5);
+    /* Gunakan Flexbox agar bisa rata tengah & elegan */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: var(--size-4);
 }
 
 .menu-item {
+    flex: 1;
+    min-width: 200px;
     text-align: center;
-    padding: var(--size-4);
-    border-radius: var(--radius-3);
-    transition: background var(--ease-2), transform var(--ease-spring-2);
+    padding: var(--size-5);
+    border-radius: var(--radius-4);
+    background: transparent;
+    transition: all var(--ease-spring-2);
     cursor: pointer;
+    border: 1px solid transparent;
 }
-.menu-item:hover { background: white; transform: translateY(-8px); box-shadow: var(--shadow-2); }
-.menu-icon { font-size: var(--font-size-7); margin-bottom: var(--size-3); }
-.menu-item h4 { color: var(--brand-primary); margin: 0; font-size: var(--font-size-4); }
-.menu-item p { color: var(--text-muted); margin-top: var(--size-1); font-size: var(--font-size-2); }
 
-/* --- Main Content (Bento Highlight) --- */
-.main-content { margin-top: 150px; }
-.bento-highlight {
-    background: white;
+/* Sentuhan Estetik saat di-hover */
+.menu-item:hover { 
+    background: white; 
+    transform: translateY(-10px) scale(1.02); 
+    box-shadow: var(--shadow-3); 
+    border-color: var(--brand-primary);
+}
+
+.menu-icon { 
+    font-size: var(--font-size-7); 
+    margin-bottom: var(--size-3); 
+    /* Estetik: Ikon kasih animasi mantul kecil pas hover */
+    transition: transform var(--ease-spring-2);
+}
+.menu-item:hover .menu-icon {
+    transform: scale(1.2);
+}
+
+.menu-item h4 { color: var(--brand-primary); margin: 0; font-size: var(--font-size-4); font-weight: var(--font-weight-8); }
+.menu-item p { color: var(--text-muted); margin-top: var(--size-2); font-size: var(--font-size-2); line-height: 1.4; }
+
+/* --- NATIVE DIALOG MODAL (POP-UP) ESTETIK --- */
+.aesthetic-modal {
+    margin: auto; /* Otomatis ke tengah layar */
+    border: none;
     border-radius: var(--radius-5);
-    padding: var(--size-8);
-    box-shadow: var(--shadow-2);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--size-8);
-    align-items: center;
-}
-.bento-highlight h2 { color: var(--brand-primary); font-size: var(--font-size-6); margin-block: var(--size-3); }
-.placeholder-map {
-    aspect-ratio: 16/9;
-    background: var(--gray-2);
-    border-radius: var(--radius-3);
-    display: grid; place-items: center;
-    color: var(--text-muted);
+    padding: 0;
+    background: transparent;
+    max-width: 450px;
+    width: 90%;
+    /* Animasi masuk */
+    animation: var(--animation-scale-up) forwards;
 }
 
-/* --- Footer --- */
-.site-footer {
-    background: var(--brand-primary);
-    color: var(--green-1);
-    margin-top: var(--size-10);
-    padding-block: var(--size-9);
-    text-align: center;
-    border-radius: var(--radius-5) var(--radius-5) 0 0;
+.aesthetic-modal::backdrop {
+    background: hsl(0 0% 0% / 0.4);
+    backdrop-filter: blur(8px);
+    animation: var(--animation-fade-in) forwards;
 }
+
+.modal-content {
+    background: white;
+    padding: var(--size-8);
+    border-radius: var(--radius-5);
+    position: relative;
+    text-align: center;
+    box-shadow: var(--shadow-6);
+}
+
+.close-modal {
+    position: absolute;
+    top: var(--size-4); right: var(--size-4);
+    background: var(--gray-2);
+    border: none;
+    border-radius: var(--radius-round);
+    width: var(--size-7); height: var(--size-7);
+    font-size: var(--font-size-4);
+    cursor: pointer;
+    transition: background var(--ease-2);
+}
+.close-modal:hover { background: var(--gray-4); }
+
+.modal-icon-large { font-size: var(--font-size-8); margin-bottom: var(--size-4); }
+.modal-content h3 { color: var(--brand-primary); font-size: var(--font-size-6); margin-bottom: var(--size-2); }
+.modal-content p { color: var(--text-muted); line-height: var(--font-lineheight-3); margin-bottom: var(--size-6); }
+
+.btn-primary {
+    background: var(--brand-primary);
+    color: white;
+    border: none;
+    padding: var(--size-3) var(--size-6);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-7);
+    cursor: pointer;
+    width: 100%;
+    transition: background var(--ease-2), transform var(--ease-spring-2);
+}
+.btn-primary:hover { background: var(--green-10); transform: translateY(-2px); box-shadow: var(--shadow-2); }
+
+/* Main Content & Footer (Sama) */
+.main-content { margin-top: 180px; } /* Jarak ditambah karena menu agak turun */
+.bento-highlight { background: white; border-radius: var(--radius-5); padding: var(--size-8); box-shadow: var(--shadow-2); display: grid; grid-template-columns: 1fr 1fr; gap: var(--size-8); align-items: center; }
+.bento-highlight h2 { color: var(--brand-primary); font-size: var(--font-size-6); margin-block: var(--size-3); }
+.placeholder-map { aspect-ratio: 16/9; background: var(--gray-2); border-radius: var(--radius-3); display: grid; place-items: center; color: var(--text-muted); }
+.site-footer { background: var(--brand-primary); color: var(--green-1); margin-top: var(--size-10); padding-block: var(--size-9); text-align: center; border-radius: var(--radius-5) var(--radius-5) 0 0; }
 .site-footer h2 { margin-bottom: var(--size-2); font-size: var(--font-size-5); }
 .site-footer p { opacity: 0.8; margin-bottom: var(--size-5); }
 .site-footer small { opacity: 0.6; }
 
-/* Responsive Media Queries */
 @media (max-width: 768px) {
-    .floating-menu { grid-template-columns: 1fr; position: static; transform: none; width: 100%; margin-top: var(--size-5); }
+    .floating-menu-container { position: static; transform: none; padding-inline: var(--size-4); margin-top: calc(var(--size-8) * -1); z-index: var(--layer-4); }
+    .floating-menu { flex-direction: column; padding: var(--size-4); }
+    .menu-item { min-width: 100%; padding: var(--size-4); }
     .slide-content h2 { font-size: var(--font-size-5); }
     .bento-highlight { grid-template-columns: 1fr; padding: var(--size-5); }
     .main-content { margin-top: var(--size-8); }
