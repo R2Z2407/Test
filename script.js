@@ -1,5 +1,5 @@
-// --- 1. Fitur Aksesibilitas (Zoom Text) ---
-let currentZoom = 100; // Persentase base
+// --- 1. Accessibility Logic (Zoom) ---
+let currentZoom = 100;
 const body = document.getElementById('app-body');
 
 document.getElementById('btn-zoom-in').addEventListener('click', () => {
@@ -16,49 +16,73 @@ document.getElementById('btn-zoom-out').addEventListener('click', () => {
     }
 });
 
-// --- 2. Fetching Data dari db.json ---
-async function loadDesaData() {
+// --- 2. Swiper Initialization ---
+function initSwiper() {
+    new Swiper(".mySwiper", {
+        loop: true,
+        effect: "fade",
+        fadeEffect: { crossFade: true },
+        autoplay: { delay: 6000, disableOnInteraction: false },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+}
+
+// --- 3. Fetch Data ---
+async function loadData() {
     try {
-        // Ambil data dari file db.json lokal
         const response = await fetch('db.json');
-        
-        // Cek kalau responnya gagal (misal file tidak ditemukan)
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
+        if (!response.ok) throw new Error("Gagal mengambil data dari db.json");
         const data = await response.json();
-        renderData(data);
+        renderWeb(data);
     } catch (error) {
-        console.error("Gagal memuat data:", error);
-        document.getElementById('news-container').innerHTML = 
-            `<p class="text-red-500">Gagal memuat berita. Pastikan Anda menjalankan web ini di local server.</p>`;
+        console.error("Error:", error);
+        document.getElementById('hero-swiper-wrapper').innerHTML = `<div class="swiper-slide loading-slide" style="padding: 100px; color: white;">Error: Pastikan web dijalankan di Local Server.</div>`;
     }
 }
 
-// --- 3. Render Data ke DOM ---
-function renderData(data) {
-    // Render Berita
-    const newsContainer = document.getElementById('news-container');
-    newsContainer.innerHTML = ''; // Kosongkan placeholder
+// --- 4. Render HTML Components ---
+function renderWeb(data) {
+    // Render Hero Slider
+    const swiperWrapper = document.getElementById('hero-swiper-wrapper');
+    swiperWrapper.innerHTML = ''; 
 
-    data.berita_terbaru.forEach(berita => {
-        const articleCard = `
-            <article class="bg-white p-6 rounded-3xl border border-slate-200 hover:border-blue-300 transition group cursor-pointer shadow-sm">
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wider">${berita.kategori}</span>
-                    <span class="text-slate-400 text-sm font-medium">${berita.tanggal}</span>
+    data.berita_utama.forEach(berita => {
+        const slideHTML = `
+            <div class="swiper-slide">
+                <img src="${berita.image_url}" alt="${berita.judul}">
+                <div class="slide-content">
+                    <span class="badge badge-accent">${berita.kategori}</span>
+                    <h2>${berita.judul}</h2>
+                    <p>${berita.ringkasan}</p>
                 </div>
-                <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition">${berita.judul}</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">${berita.ringkasan}</p>
-            </article>
+            </div>
         `;
-        newsContainer.innerHTML += articleCard;
+        swiperWrapper.innerHTML += slideHTML;
+    });
+    
+    initSwiper(); // Jalankan swiper setelah elemen ada di DOM
+
+    // Render Menu Layanan
+    const menuContainer = document.getElementById('dynamic-menu');
+    menuContainer.innerHTML = ''; 
+
+    data.layanan_unggulan.forEach(layanan => {
+        const menuHTML = `
+            <div class="menu-item" tabindex="0" role="button">
+                <div class="menu-icon">${layanan.icon}</div>
+                <h4>${layanan.nama}</h4>
+                <p>${layanan.deskripsi}</p>
+            </div>
+        `;
+        menuContainer.innerHTML += menuHTML;
     });
 
-    // Render Alamat di Footer
+    // Render Footer
     document.getElementById('footer-address').innerText = data.informasi_desa.kontak;
 }
 
-// Jalankan fungsi load data saat halaman selesai di-load
-document.addEventListener('DOMContentLoaded', loadDesaData);
+// Eksekusi saat web dimuat
+document.addEventListener('DOMContentLoaded', loadData);
