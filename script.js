@@ -1,126 +1,89 @@
-let globalData = null; // Simpan data JSON di variabel global biar gampang diakses
+let globalData = null;
 
-// --- 1. Accessibility Logic ---
+// Aksesibilitas Font
 let currentZoom = 100;
 const body = document.getElementById('app-body');
-
 document.getElementById('btn-zoom-in').addEventListener('click', () => {
-    if (currentZoom < 130) {
-        currentZoom += 10;
-        body.style.fontSize = `${currentZoom}%`;
-    }
+    if (currentZoom < 130) { currentZoom += 10; body.style.fontSize = `${currentZoom}%`; }
 });
-
 document.getElementById('btn-zoom-out').addEventListener('click', () => {
-    if (currentZoom > 90) {
-        currentZoom -= 10;
-        body.style.fontSize = `${currentZoom}%`;
-    }
+    if (currentZoom > 90) { currentZoom -= 10; body.style.fontSize = `${currentZoom}%`; }
 });
 
-// --- 2. Swiper Initialization ---
-function initSwiper() {
-    new Swiper(".mySwiper", {
-        loop: true,
-        effect: "fade",
-        fadeEffect: { crossFade: true },
-        autoplay: { delay: 6000, disableOnInteraction: false },
-        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-    });
-}
-
-// --- 3. Fetch Data ---
+// Fetch Data
 async function loadData() {
     try {
         const response = await fetch('db.json');
-        if (!response.ok) throw new Error("Gagal mengambil data dari db.json");
-        globalData = await response.json(); // Simpan ke global
+        if (!response.ok) throw new Error("Gagal load JSON");
+        globalData = await response.json();
         renderWeb(globalData);
     } catch (error) {
-        console.error("Error:", error);
-        document.getElementById('hero-swiper-wrapper').innerHTML = `<div class="swiper-slide loading-slide" style="padding: 100px; color: white;">Error: Pastikan web dijalankan di Local Server.</div>`;
+        console.error(error);
     }
 }
 
-// --- 4. Render HTML Components ---
+// Render Konten
 function renderWeb(data) {
-    // A. Render Hero Slider
-    const swiperWrapper = document.getElementById('hero-swiper-wrapper');
-    swiperWrapper.innerHTML = ''; 
+    // 1. Render Top Info & Footer
+    document.getElementById('top-contact').innerText = `📍 ${data.informasi_desa.kontak} | 📞 ${data.informasi_desa.telepon}`;
+    
+    // 2. Render Stats
+    document.getElementById('stat-luas').innerText = data.statistik.luas;
+    document.getElementById('stat-populasi').innerText = data.statistik.populasi;
+    document.getElementById('stat-rtrw').innerText = data.statistik.rt_rw;
 
-    data.berita_utama.forEach(berita => {
-        const slideHTML = `
-            <div class="swiper-slide">
-                <img src="${berita.image_url}" alt="${berita.judul}">
-                <div class="slide-content">
-                    <span class="badge badge-accent">${berita.kategori}</span>
-                    <h2>${berita.judul}</h2>
-                    <p>${berita.ringkasan}</p>
+    // 3. Render Vertical Cards (Take Action ala Hinton)
+    const servicesContainer = document.getElementById('services-container');
+    servicesContainer.innerHTML = '';
+    data.layanan_unggulan.forEach(layanan => {
+        const cardHTML = `
+            <div class="v-card" onclick="openModal(${layanan.id})">
+                <img src="${layanan.image_url}" alt="${layanan.nama}">
+                <div class="v-card-content">
+                    <span class="icon">${layanan.icon}</span>
+                    <h4>${layanan.nama}</h4>
                 </div>
             </div>
         `;
-        swiperWrapper.innerHTML += slideHTML;
+        servicesContainer.innerHTML += cardHTML;
     });
-    
-    initSwiper();
 
-    // B. Render Menu Layanan (Sekarang bisa diklik!)
-    const menuContainer = document.getElementById('dynamic-menu');
-    menuContainer.innerHTML = ''; 
-
-    data.layanan_unggulan.forEach(layanan => {
-        // Tambahkan onclick yang memanggil fungsi openModal(id)
-        const menuHTML = `
-            <div class="menu-item" tabindex="0" role="button" onclick="openModal(${layanan.id})">
-                <div class="menu-icon">${layanan.icon}</div>
-                <h4>${layanan.nama}</h4>
-                <p>${layanan.deskripsi}</p>
+    // 4. Render Berita
+    const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = '';
+    data.berita_utama.forEach(berita => {
+        const newsHTML = `
+            <div class="news-card">
+                <img src="${berita.image_url}" alt="${berita.judul}">
+                <div class="news-content">
+                    <span class="news-date">${berita.tanggal}</span>
+                    <h3 class="news-title">${berita.judul}</h3>
+                    <a href="#" style="color:var(--accent); font-weight:bold; font-size:14px; text-decoration:none;">Baca Selengkapnya &rarr;</a>
+                </div>
             </div>
         `;
-        menuContainer.innerHTML += menuHTML;
+        newsContainer.innerHTML += newsHTML;
     });
-
-    // C. Render Footer
-    document.getElementById('footer-address').innerText = data.informasi_desa.kontak;
 }
 
-// --- 5. Modal / Pop-up Logic ---
+// Modal Logic
 const modal = document.getElementById('service-modal');
-const btnCloseModal = document.getElementById('btn-close-modal');
-
-// Fungsi buka modal
 function openModal(id) {
-    // Cari data layanan berdasarkan ID dari globalData
     const layanan = globalData.layanan_unggulan.find(item => item.id === id);
-    
     if (layanan) {
-        // Isi konten modal
         document.getElementById('modal-icon').innerText = layanan.icon;
         document.getElementById('modal-title').innerText = layanan.nama;
-        document.getElementById('modal-desc').innerText = layanan.detail; // Mengambil dari properti 'detail' di JSON
-        
-        // Tampilkan modal bawaan HTML5 (showModal bikin background otomatis ke-lock)
+        document.getElementById('modal-desc').innerText = layanan.detail;
         modal.showModal();
     }
 }
 
-// Fungsi tutup modal (Klik tombol X)
-btnCloseModal.addEventListener('click', () => {
-    modal.close();
-});
-
-// Fungsi tutup modal (Klik area luar modal / backdrop)
+document.getElementById('btn-close-modal').addEventListener('click', () => modal.close());
 modal.addEventListener('click', (e) => {
-    const dialogDimensions = modal.getBoundingClientRect();
-    if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-    ) {
+    const rect = modal.getBoundingClientRect();
+    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
         modal.close();
     }
 });
 
-// Eksekusi saat web dimuat
 document.addEventListener('DOMContentLoaded', loadData);
