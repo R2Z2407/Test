@@ -3,42 +3,46 @@
     "nama": "Mulyamekar",
     "kecamatan": "Babakancikao",
     "kabupaten": "Purwakarta",
-    "kontak": "Kantor Kepala Desa Mulyamekar, Kec. Babakancikao"
+    "telepon": "0264-123456",
+    "email": "pemdes@mulyamekar.desa.id"
+  },
+  "statistik": {
+    "luas": "4.5+",
+    "populasi": "4,200+",
+    "rt_rw": "24/8"
   },
   "layanan_unggulan": [
     {
-      "id": 1, "nama": "Layanan Surat", "deskripsi": "KTP, KK, SKCK & Domisili", "icon": "📄",
-      "detail": "Pembuatan surat pengantar RT/RW kini bisa diakses secara digital. Silakan siapkan NIK dan KK Anda untuk melanjutkan."
+      "id": 1, "nama": "Layanan Surat", "icon": "📄",
+      "detail": "Pembuatan surat pengantar RT/RW kini bisa diakses digital.",
+      "image_url": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&auto=format&fit=crop"
     },
     {
-      "id": 2, "nama": "Dana Desa", "deskripsi": "Transparansi APBDes", "icon": "📊",
-      "detail": "Pantau realisasi anggaran desa, proyek infrastruktur, dan pemberdayaan masyarakat tahun 2026 secara transparan."
+      "id": 2, "nama": "Transparansi Dana", "icon": "📊",
+      "detail": "Pantau realisasi APBDes dan proyek infrastruktur 2026.",
+      "image_url": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop"
     },
     {
-      "id": 3, "nama": "Lapor Kades", "deskripsi": "Pengaduan Warga 24/7", "icon": "📢",
-      "detail": "Ada jalan rusak atau lampu mati? Laporkan langsung ke meja Kepala Desa. Identitas pelapor dijamin kerahasiaannya."
+      "id": 3, "nama": "Lapor Kades", "icon": "📢",
+      "detail": "Laporkan masalah infrastruktur atau layanan masyarakat 24 jam.",
+      "image_url": "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=600&auto=format&fit=crop"
     },
     {
-      "id": 4, "nama": "Kesehatan", "deskripsi": "Posyandu & Bidan", "icon": "🏥",
-      "detail": "Jadwal imunisasi balita, layanan ibu hamil, dan cek kesehatan lansia gratis di Poskesdes Mulyamekar."
+      "id": 4, "nama": "Puskesdes", "icon": "🏥",
+      "detail": "Cek jadwal imunisasi balita dan layanan kesehatan gratis.",
+      "image_url": "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=600&auto=format&fit=crop"
     }
   ],
   "berita_utama": [
     {
-      "id": 1,
-      "tanggal": "24 Ags 2025",
-      "judul": "Jalan Desa Kini Mulus Beraspal",
-      "kategori": "Infrastruktur",
-      "ringkasan": "Langkah besar bagi kemudahan mobilitas warga. Dana Desa Tahap II mewujudkan jalan impian sepanjang 106 meter di kawasan utama.",
-      "image_url": "https://images.unsplash.com/photo-1596130193132-73a46564619a?q=80&w=1600&auto=format&fit=crop"
+      "id": 1, "tanggal": "24 Ags 2025",
+      "judul": "Pengaspalan Jalan Lingkungan Kp. Cikopak",
+      "image_url": "https://images.unsplash.com/photo-1596130193132-73a46564619a?q=80&w=800&auto=format&fit=crop"
     },
     {
-      "id": 2,
-      "tanggal": "5 Jul 2024",
-      "judul": "Pasar Desa Modern: Wadah UMKM",
-      "kategori": "Ekonomi",
-      "ringkasan": "Mulyamekar semakin mandiri! Eksplorasi produk lokal Kp. Sadang dan Perum Buana Indah di pasar desa modern kami.",
-      "image_url": "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?q=80&w=1600&auto=format&fit=crop"
+      "id": 2, "tanggal": "5 Jul 2024",
+      "judul": "Pasar Desa Modern Wadah UMKM",
+      "image_url": "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?q=80&w=800&auto=format&fit=crop"
     }
   ]
 }
