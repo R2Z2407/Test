@@ -87,3 +87,19 @@ modal.addEventListener('click', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', loadData);
+
+// --- 6. Mobile Menu Logic ---
+const menuBtn = document.getElementById('mobile-menu-btn');
+const mainNav = document.getElementById('main-nav');
+
+menuBtn.addEventListener('click', () => {
+    // Toggle class 'active' untuk memunculkan/menyembunyikan menu
+    mainNav.classList.toggle('active');
+    
+    // Ubah ikon tombol jadi X kalau menu lagi kebuka
+    if(mainNav.classList.contains('active')){
+        menuBtn.innerText = '✕';
+    } else {
+        menuBtn.innerText = '☰';
+    }
+});
