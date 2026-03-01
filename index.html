@@ -3,46 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Resmi Desa Mulyamekar</title>
-    
+    <title>Desa Mulyamekar - Melangkah Maju</title>
     <link rel="stylesheet" href="https://unpkg.com/open-props" />
     <link rel="stylesheet" href="https://unpkg.com/open-props/normalize.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Volkhov:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="app-body">
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <div class="brand">
-                <span class="brand-icon">🌿</span>
-                <div class="brand-text">
-                    <h1>Mulyamekar</h1>
-                    <p>Babakancikao, Purwakarta</p>
-                </div>
-            </div>
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <span id="top-contact">📍 Kantor Desa Mulyamekar | 📞 Memuat...</span>
             <div class="accessibility-controls">
                 <button id="btn-zoom-out" aria-label="Perkecil">A-</button>
                 <button id="btn-zoom-in" aria-label="Perbesar">A+</button>
             </div>
         </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <h1>Mulyamekar</h1>
+                <span>Purwakarta</span>
+            </div>
+            <nav class="desktop-nav">
+                <a href="#">Beranda</a>
+                <a href="#">Profil Desa</a>
+                <a href="#">Pemerintahan</a>
+                <a href="#">Layanan</a>
+            </nav>
+        </div>
     </header>
 
-    <section class="hero">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper" id="hero-swiper-wrapper">
-                <div class="swiper-slide loading-slide">Memuat berita utama...</div>
+    <section class="hero-angled">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <h2 class="hero-title">Desa<br><span>Mulyamekar</span></h2>
+            
+            <div class="hero-subcards">
+                <div class="subcard">
+                    <img src="https://images.unsplash.com/photo-1589802829985-81a001b74f09?w=300&auto=format&fit=crop" alt="Sawah">
+                    <p>Potensi Alam</p>
+                </div>
+                <div class="subcard">
+                    <img src="https://images.unsplash.com/photo-1533038590840-1cde6e668a91?w=300&auto=format&fit=crop" alt="UMKM">
+                    <p>Produk Lokal</p>
+                </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
+    </section>
 
-        <nav class="floating-menu-container">
-            <div class="floating-menu" id="dynamic-menu">
-                <p>Memuat menu...</p>
+    <section class="container about-stats-section">
+        <div class="about-images">
+            <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=500&auto=format&fit=crop" class="img-main" alt="Gotong Royong">
+        </div>
+        <div class="about-text">
+            <span class="section-subtitle">TENTANG MULYAMEKAR</span>
+            <h3>Melestarikan Tradisi,<br>Menjemput Inovasi.</h3>
+            <p>Mulyamekar kini bertransformasi menjadi desa yang mandiri dan terdigitalisasi, tanpa meninggalkan akar budaya gotong royong masyarakat agraris di Kecamatan Babakancikao.</p>
+            
+            <div class="stats-grid">
+                <div>
+                    <h4 id="stat-luas">--</h4>
+                    <span>Km Persegi</span>
+                </div>
+                <div>
+                    <h4 id="stat-populasi">--</h4>
+                    <span>Populasi Warga</span>
+                </div>
+                <div>
+                    <h4 id="stat-rtrw">--</h4>
+                    <span>RT / RW</span>
+                </div>
             </div>
-        </nav>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header-center">
+                <span class="section-subtitle">AKSES MUDAH</span>
+                <h2>Layanan Digital Desa</h2>
+            </div>
+            <div class="vertical-cards-grid" id="services-container">
+                <p>Memuat layanan...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container news-section">
+        <div class="section-header-left">
+            <span class="section-subtitle">KABAR TERBARU</span>
+            <h2>Berita Desa</h2>
+        </div>
+        <div class="news-grid" id="news-container">
+            <p>Memuat berita...</p>
+        </div>
     </section>
 
     <dialog id="service-modal" class="aesthetic-modal">
@@ -51,32 +108,25 @@
             <div id="modal-icon" class="modal-icon-large"></div>
             <h3 id="modal-title">Judul Layanan</h3>
             <p id="modal-desc">Deskripsi layanan akan muncul di sini.</p>
-            <button class="btn-primary">Lanjutkan &rarr;</button>
+            <button class="btn-primary">Akses Layanan</button>
         </div>
     </dialog>
 
-    <main class="container main-content">
-        <article class="bento-highlight">
-            <div class="bento-text">
-                <span class="badge badge-accent">Wilayah Kami</span>
-                <h2>Mari Berkunjung ke Mulyamekar</h2>
-                <p>Temukan kehangatan warga, potensi ekonomi kreatif, dan keasrikan lingkungan desa kami di jantung Kecamatan Babakancikao. Langkah bersama menuju desa mandiri.</p>
+    <footer class="wavy-footer">
+        <div class="wave-bg">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#064e3b" fill-opacity="1" d="M0,160L80,170.7C160,181,320,203,480,192C640,181,800,139,960,138.7C1120,139,1280,181,1360,202.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+        </div>
+        <div class="footer-content container">
+            <div class="footer-brand">
+                <h2>Mulyamekar</h2>
+                <p>Kec. Babakancikao, Purwakarta</p>
             </div>
-            <div class="bento-media">
-                <div class="placeholder-map">[Peta / Foto Desa]</div>
+            <div class="footer-links">
+                <p>&copy; 2026 Pemerintah Desa Mulyamekar.</p>
             </div>
-        </article>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <h2>Desa Mulyamekar</h2>
-            <p id="footer-address">Memuat alamat...</p>
-            <small>&copy; 2026 Pemerintah Desa Mulyamekar.</small>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
